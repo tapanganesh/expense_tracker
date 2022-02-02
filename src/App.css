@@ -2,9 +2,16 @@
   text-align: center;
 }
 
-
-
-
+a:hover {
+  color:green !important;
+}
+.SideBar{
+  background-color:#212529;
+}
+ 
+.title{
+ font-family: 'Syne Tactile', cursive;
+}
 
 
 .App-header {
