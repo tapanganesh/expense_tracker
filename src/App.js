@@ -26,7 +26,8 @@ function App() {
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
             placement="start"
-           
+            keyboard='true'
+            scroll='true'
           >
             <Offcanvas.Header closeButton closeVariant='white' className="SideBar text-light ">
               <Offcanvas.Title id="offcanvasNavbarLabel">
