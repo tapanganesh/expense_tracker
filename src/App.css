@@ -5,12 +5,17 @@
 a:hover {
   color:#198754 !important;
 }
+.title:hover{
+  color:#0dcaf0 !important;
+}
 .SideBar{
   background-color:#212529;
 }
  
 .title{
- font-family: 'Syne Tactile', cursive;
+font-family: 'Caveat',
+cursive;
+font-size:2rem !important;
 }
 
 
