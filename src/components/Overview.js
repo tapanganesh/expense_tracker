@@ -1,8 +1,9 @@
 import React from "react";
-import PieChart from "./Piechart";
 import BudgetStatus from "./BudgetStatus";
 import BudgetStatus2 from "./BudgetStatus2";
 import Welcome from "./Welcome"
+import ExpenseForm from './ExpenseForm'
+import IncomeForm from "./IncomeForm"
 function Overview() {
   return (
     <div className="bg-light">
@@ -20,6 +21,14 @@ function Overview() {
             <div className="container">
               <BudgetStatus2/>
             </div>
+          </div>
+        </div>
+        <div className="row row-cols-auto row-cols-md-2">
+          <div className="col">
+            {/* <ExpenseForm/> */}
+          </div>
+          <div className="col">
+            <IncomeForm/>
           </div>
         </div>
         {/* show expenses list here */}

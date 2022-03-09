@@ -12,9 +12,10 @@ import {
 } from "react-bootstrap";
 import Overview from "./components/Overview";
 import Expenses from "./components/Expenses";
+import Income from "./components/Income";
 import { Route, Routes, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileInvoiceDollar,faDonate,faDollarSign,faHome} from "@fortawesome/free-solid-svg-icons";
+import { faFileInvoiceDollar,faDonate,faDollarSign,faHome,faFileInvoice} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
@@ -59,7 +60,17 @@ function App() {
                     to="/expenses"
                     className="text-decoration-none text-light "
                   >
-                    Link
+                    <FontAwesomeIcon icon={faFileInvoice} className="me-2" />
+                    Expenses
+                  </Link>
+                </Nav>
+                <Nav>
+                  <Link
+                    to="/incomes"
+                    className="text-decoration-none text-light "
+                  >
+                    <FontAwesomeIcon icon={faFileInvoice} className="me-2" />
+                    Income
                   </Link>
                 </Nav>
               </Nav>
@@ -70,6 +81,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route path="/expenses" element={<Expenses />} />
+        <Route path="/incomes" element={<Income />} />
       </Routes>
     </div>
   );
