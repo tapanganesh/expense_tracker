@@ -1,4 +1,7 @@
 import React from "react";
+import IncomeValue from "./Values/IncomeValue";
+import ExpenseValue from "./Values/ExpenseValue";
+import AvailableValue from "./Values/Available";
 
 function BudgetStatus2() {
   return (
@@ -11,19 +14,25 @@ function BudgetStatus2() {
             <div className="col">
               <h5 className="text-success">Income:</h5>
             </div>
-            <div className="col"></div>
+            <div className="col">
+              <IncomeValue />
+            </div>
           </div>
           <div className="row ">
             <div className="col">
               <h5 className="text-danger">Expenses:</h5>
             </div>
-            <div className="col"></div>
+            <div className="col">
+              <ExpenseValue />
+            </div>
           </div>
           <div className="row ">
             <div className="col">
               <h5 className="">Available:</h5>
             </div>
-            <div className="col"></div>
+            <div className="col">
+              <AvailableValue />
+            </div>
           </div>
         </div>
       </div>

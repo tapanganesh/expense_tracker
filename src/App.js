@@ -15,7 +15,15 @@ import Expenses from "./components/Expenses";
 import Income from "./components/Income";
 import { Route, Routes, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileInvoiceDollar,faDonate,faDollarSign,faHome,faFileInvoice} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileInvoiceDollar,
+  faDonate,
+  faDollarSign,
+  faHome,
+  faFileInvoice,
+  faPiggyBank,
+  faMoneyBillAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
@@ -50,7 +58,10 @@ function App() {
             <Offcanvas.Body className="SideBar">
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav>
-                  <Link to="/" className="text-decoration-none text-light ">
+                  <Link
+                    to="/"
+                    className="text-decoration-none text-light fs-5 mb-3 "
+                  >
                     <FontAwesomeIcon icon={faHome} className="me-2" />
                     Home
                   </Link>
@@ -58,18 +69,21 @@ function App() {
                 <Nav>
                   <Link
                     to="/expenses"
-                    className="text-decoration-none text-light "
+                    className="text-decoration-none text-light fs-5 mb-3"
                   >
-                    <FontAwesomeIcon icon={faFileInvoice} className="me-2" />
+                    <FontAwesomeIcon
+                      icon={faMoneyBillAlt}
+                      className="me-2"
+                    />
                     Expenses
                   </Link>
                 </Nav>
                 <Nav>
                   <Link
                     to="/incomes"
-                    className="text-decoration-none text-light "
+                    className="text-decoration-none text-light fs-5 mb-3 "
                   >
-                    <FontAwesomeIcon icon={faFileInvoice} className="me-2" />
+                    <FontAwesomeIcon icon={faPiggyBank} className="me-2" />
                     Income
                   </Link>
                 </Nav>

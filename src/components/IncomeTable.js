@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
 
-function ExpenseTable() {
-    let expenses = useSelector((state) => state.expense);
+function IncomeTable() {
+  let incomes = useSelector((state) => state.income);
   return (
     <div>
-      {expenses.length != 0 && (
+      {incomes.length != 0 && (
         <table className="table text-center table-arning table-light">
           <thead>
             <tr className="">
@@ -16,11 +16,11 @@ function ExpenseTable() {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((obj, id) => (
+            {incomes.map((obj, id) => (
               <tr key={id}>
-                <td>{id+1}</td>
+                <td>{id + 1}</td>
                 <td className=" ">{obj.title}</td>
-                <td className="text-danger">${obj.amount}</td>
+                <td className="text-success">${obj.amount}</td>
                 <td className=" ">{obj.date}</td>
               </tr>
             ))}
@@ -31,4 +31,4 @@ function ExpenseTable() {
   );
 }
 
-export default ExpenseTable
+export default IncomeTable;

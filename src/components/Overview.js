@@ -4,6 +4,7 @@ import BudgetStatus2 from "./BudgetStatus2";
 import Welcome from "./Welcome"
 import ExpenseForm from './ExpenseForm'
 import IncomeForm from "./IncomeForm"
+import IncomeTable from "./IncomeTable";
 function Overview() {
   return (
     <div className="bg-light">
@@ -28,7 +29,7 @@ function Overview() {
             {/* <ExpenseForm/> */}
           </div>
           <div className="col">
-            <IncomeForm/>
+            <IncomeTable/>
           </div>
         </div>
         {/* show expenses list here */}
