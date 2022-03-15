@@ -56,8 +56,8 @@ function IncomeForm() {
             <label htmlFor="am" className="fs-5 lead">
               Amount
             </label>
-            <div class="input-group w-75">
-              <span class="input-group-text">$</span>
+            <div className="input-group w-75">
+              <span className="input-group-text">$</span>
               <input
                 type="number"
                 id="am"
