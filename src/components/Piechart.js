@@ -3,28 +3,46 @@ import { MDBContainer } from "mdbreact";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import { Chart as ChartJS } from "chart.js/auto";
-
+import { useSelector } from "react-redux";
 Chart.register(ArcElement);
-class PieChart extends React.PureComponent {
-  state = {
+// let expenses = useSelector((state) => state.expense);
+
+function PieChart() {
+  let expenses = useSelector((state) => state.expense);
+  let name = [];
+  let val = [];
+  expenses.map((obj) => {
+    name.push(obj.title);
+    val.push(Number(obj.amount));
+  });
+ 
+  let state = {
     pie: {
-      labels: ['Red','Green','orange','blue','yellow'],
+      labels: name,
       datasets: [
         {
           label: "My First Dataset",
-          data: [300, 50, 100,200,300],
-          backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF'],
+          data: [...val],
+          backgroundColor: [
+            "#0088FE",
+            "#00C49F",
+            "#FFBB28",
+            "#FF8042",
+            "#AF19FF",
+            "#EC6B56",
+            "#FFC154",
+            "#47B39C",
+          ],
           hoverOffset: 4,
         },
       ],
     },
   };
-  render() {
-    return (
-      <MDBContainer>
-        <Pie data={this.state.pie} options={{ responsive: true }} />
-      </MDBContainer>
-    );
-  }
+ 
+  return (
+    <MDBContainer>
+      <Pie data={state.pie} options={{ responsive: true }} />
+    </MDBContainer>
+  );
 }
 export default PieChart;
