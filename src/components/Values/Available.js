@@ -16,7 +16,7 @@ function Available() {
   });
 
   let avail =  +incomeValue - +expenseValue ;
-  console.log(avail);
+  // console.log(avail);
   return (
     <div>
       {avail <= 0 && <h5 className="text-danger">{avail}</h5>}

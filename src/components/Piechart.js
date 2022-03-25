@@ -24,8 +24,8 @@ function PieChart() {
           label: "My First Dataset",
           data: [...val],
           backgroundColor: [
-            "#0088FE",
             "#00C49F",
+            "#0088FE",
             "#FFBB28",
             "#FF8042",
             "#AF19FF",

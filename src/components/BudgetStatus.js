@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Available from'./Values/Available'
 function BudgetStatus() {
   return (
     <div>
@@ -8,10 +8,14 @@ function BudgetStatus() {
           <h5 className="card-title">Budget Status</h5>
           <hr />
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Your available balance is <Available />
+            <div className="container w-75">
+              <ul class="">
+                <li className=" text-success">If green your doing great.</li>
+                <li className=" text-danger">if red you have to improve.</li>
+              </ul> 
+            </div>
           </p>
-          
         </div>
       </div>
     </div>

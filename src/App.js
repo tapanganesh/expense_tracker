@@ -10,6 +10,7 @@ import {
   FormControl,
   NavDropdown,
 } from "react-bootstrap";
+
 import Overview from "./components/Overview";
 import Expenses from "./components/Expenses";
 import Income from "./components/Income";
@@ -71,10 +72,7 @@ function App() {
                     to="/expenses"
                     className="text-decoration-none text-light fs-5 mb-3"
                   >
-                    <FontAwesomeIcon
-                      icon={faMoneyBillAlt}
-                      className="me-2"
-                    />
+                    <FontAwesomeIcon icon={faMoneyBillAlt} className="me-2" />
                     Expenses
                   </Link>
                 </Nav>
@@ -92,11 +90,15 @@ function App() {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route path="/expenses" element={<Expenses />} />
         <Route path="/incomes" element={<Income />} />
       </Routes>
+      <footer className="bg-dark text-white fixed-bottom">
+        hey this is footer
+      </footer>
     </div>
   );
 }
