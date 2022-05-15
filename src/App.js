@@ -14,6 +14,8 @@ import {
 import Overview from "./components/Overview";
 import Expenses from "./components/Expenses";
 import Income from "./components/Income";
+import LoginPage from "./components/LoginPage";
+import Footer from "./components/Footer";
 import { Route, Routes, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,6 +26,7 @@ import {
   faFileInvoice,
   faPiggyBank,
   faMoneyBillAlt,
+  faSlidersH,
 } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
@@ -85,6 +88,15 @@ function App() {
                     Income
                   </Link>
                 </Nav>
+                <Nav>
+                  <Link
+                    to="/login"
+                    className="text-decoration-none text-light fs-5 mb-3 "
+                  >
+                    <FontAwesomeIcon icon={faSlidersH} className="me-2" />
+                    Login/Signup
+                  </Link>
+                </Nav>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -95,9 +107,10 @@ function App() {
         <Route path="/" element={<Overview />} />
         <Route path="/expenses" element={<Expenses />} />
         <Route path="/incomes" element={<Income />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       <footer className="bg-dark text-white fixed-bottom">
-        hey this is footer
+        <Footer/>
       </footer>
     </div>
   );
