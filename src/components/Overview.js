@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import BudgetStatus from "./BudgetStatus";
 import BudgetStatus2 from "./BudgetStatus2";
 import Welcome from "./Welcome";
@@ -7,13 +7,18 @@ import IncomeForm from "./IncomeForm";
 import IncomeTable from "./IncomeTable";
 import Piechart from "./Piechart";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
 function Overview() {
-  let exp = useSelector((state) => state.expense);
+  let { userObj, isError, isLoading, isSuccess, errMsg } = useSelector(
+    (state) => state.user
+  );
+  let expenses= userObj.expenses;
+  
   let inc = useSelector((state) => state.income);
 
   return (
-    <div className="bg-light">
+    <div className="bg-light vh-100">
       <div className="mt-0">
         <Welcome />
       </div>
@@ -32,7 +37,7 @@ function Overview() {
         </div>
         <div className="row row-cols-auto row-cols-md-2 mt-2">
           <div className="col">
-            {exp.length != 0 && (
+            {expenses.length != 0 && (
               <div className="container border-end border-3 border-bottom">
                 <h3 className="mb-2 text-decoration-underline">
                   Expense Overview

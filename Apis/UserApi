@@ -1,0 +1,99 @@
+const exp=require("express");
+const userApp=exp.Router();
+const bcryptjs=require("bcryptjs");
+const expressAsyncHandler=require("express-async-handler");
+const jwt=require("jsonwebtoken");
+userApp.use(exp.json());
+
+// api to create user
+userApp.post('/createUser',expressAsyncHandler(async(req,res)=>{
+    let userCollectionObj=req.app.get("userCollection")
+
+    let newUser = req.body;
+    newUser.expenses=[];
+    newUser.Incomes=[];
+    let userdb=await userCollectionObj.findOne({username:newUser.username})
+    if(userdb!=null){
+        res.send({message:'username already taken'})
+    }
+    else{
+        let hashpwd=await bcryptjs.hash(newUser.password,6)
+        newUser.password=hashpwd
+        await userCollectionObj.insertOne(newUser);
+        res.send({message:'user created successfully'})
+        // console.log("user created")
+    }
+})
+);
+
+userApp.post('/login',expressAsyncHandler(async (req, res) =>{
+    let userCollectionObj=req.app.get('userCollection')
+    let userCredentials=req.body
+    // console.log(userCredentials)
+    let userDb=await userCollectionObj.findOne({username:userCredentials.username})
+    // console.log(userDb);
+    if(userDb==null){
+        res.send({message:'user not found'})
+    }
+    else{
+        let status=await bcryptjs.compare(userCredentials.password,userDb.password)
+        if(status==false){
+            res.send({message:'Invaild password'})
+        }
+        else{
+            let token=jwt.sign({username:userDb.username},"asdasdas",{expiresIn:'1h'})
+            res.send({message:'success',payload:token,userObj:userDb})
+            // console.log(res);
+
+        }
+    }
+}))
+userApp.post('/expense/:id',expressAsyncHandler(async(req,res)=>{
+    // console.log("yes");
+    let userCollectionObj = req.app.get("userCollection");
+    let userExpense = req.body;
+    let userId = req.params.id;
+    console.log(userId)
+
+    let userDb = await userCollectionObj.findOne({
+      username: userId,
+    });
+    // console.log(userDb);
+    if (userDb == null) {
+      res.send({ message: "user not found" });
+    } 
+    else {
+        await userCollectionObj.updateOne(
+          { username: userId},
+          { $push: { expenses: userExpense } }
+        );
+       
+        res.send({ message: "successfully added expense" });
+        console.log(res);
+      
+    }
+}))
+userApp.get(
+  "/get-userExpenses/:username",
+  expressAsyncHandler(async (req, res) => {
+    // console.log("yes");
+    let userCollectionObj = req.app.get("userCollection");
+    let userUsername = req.params.username;
+    // console.log(userId);
+
+    let userDb = await userCollectionObj.findOne({
+      username: userUsername,
+    });
+    // console.log(userDb);
+    if (userDb == null) {
+      res.send({ message: "user not found" });
+    } 
+    else {
+      
+      res.send({ message: "successfully added expense",payload:userDb.expenses });
+      // console.log(res.payload);
+    }
+  })
+);
+
+module.exports=userApp;

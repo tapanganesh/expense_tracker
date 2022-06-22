@@ -3,12 +3,31 @@ import { MDBContainer } from "mdbreact";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import { Chart as ChartJS } from "chart.js/auto";
-import { useSelector } from "react-redux";
+import {useState,useEffect} from 'react'
+import { useSelector} from "react-redux";
+import axios  from 'axios'
 Chart.register(ArcElement);
 // let expenses = useSelector((state) => state.expense);
 
 function PieChart() {
-  let expenses = useSelector((state) => state.expense);
+  let { userObj, isError, isLoading, isSuccess, errMsg } = useSelector(
+    (state) => state.user
+  );
+  let [expenses, setExp] = useState([]);
+  let url = `http://localhost:4000/user/get-userExpenses/${userObj.username}`;
+   useEffect(() => {
+     axios
+       .get(url)
+       .then((response) => {
+         // console.log("res-",response.data.payload);
+         setExp(response.data.payload);
+         //  console.log(typeof(expenses));
+         //  console.log(expenses.length);
+       })
+       .catch((error) => {
+         console.log("error-", error);
+       });
+   }, [expenses]);
   let name = [];
   let val = [];
   expenses.map((obj) => {
@@ -21,7 +40,7 @@ function PieChart() {
       labels: name,
       datasets: [
         {
-          label: "My First Dataset",
+          label: "Expenses",
           data: [...val],
           backgroundColor: [
             "#00C49F",

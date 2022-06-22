@@ -1,7 +1,8 @@
 import React from 'react'
+import axios from 'axios'
 import { addexpense } from '../Slices/Expenses'
 import {useForm} from 'react-hook-form'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {useState} from 'react'
 import {Button,Modal} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,9 +16,25 @@ function ExpenseForm() {
 
   const dispatch=useDispatch()
   let {register,handleSubmit,formState:{errors}}=useForm()
-  let onFormSubmit=(obj)=>{
-    let actionObj=addexpense(obj);
-    dispatch(actionObj);
+  let { userObj, isError, isSuccess, isLoading } = useSelector(
+    (state) => state.user
+  );
+  let id=userObj.username;
+  // console.log(id);
+  let url = `http://localhost:4000/user/expense/${id}` ;
+  // console.log(url);
+  function onFormSubmit(obj) {
+    axios
+      .post(url, obj)
+      .then((response) => {
+        alert(response.data.message)
+      })
+      .catch((error) => {
+        console.log("error-", error)
+      })
+
+    let actionObj = addexpense(obj)
+    dispatch(actionObj)
   }
   return (
     <>
